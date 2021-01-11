@@ -48,7 +48,7 @@ public class SignUpServlet extends HttpServlet {
 
                 dbUser.addUser(user);
 
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("index.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("signupsuccess.jsp");
                 requestDispatcher.include(req, resp);
             }
         }

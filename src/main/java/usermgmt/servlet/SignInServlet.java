@@ -61,7 +61,7 @@ public class SignInServlet extends HttpServlet {
                 System.out.println(cookiePassword);
                 System.out.println("trecut de cookie");
             }
-            RequestDispatcher dispatcher = req.getRequestDispatcher("login-success.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
             dispatcher.forward(req, resp);
 //            Cookie ck = new Cookie("email", email);
 //            resp.addCookie(ck);

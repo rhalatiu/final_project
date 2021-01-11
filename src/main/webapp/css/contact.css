@@ -1,0 +1,20 @@
+body {
+    padding-top: 100px;
+}
+
+.contacts {
+    text-align: center;
+    color: black;
+    line-height: 1.8;
+}
+
+.introText {
+    text-align: center;
+    margin: auto;
+    width: 40%;
+    line-height: 1.8;
+}
+
+.frame {
+    text-align: center;
+}

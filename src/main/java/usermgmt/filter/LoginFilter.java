@@ -12,7 +12,7 @@ import java.io.IOException;
 public class LoginFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        Object aUsr = req.getSession().getAttribute("");
+        Object aUsr = req.getSession().getAttribute("authenticatedUser");
         if (aUsr != null){
             chain.doFilter(req, res);
         } else {

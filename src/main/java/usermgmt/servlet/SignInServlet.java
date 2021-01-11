@@ -2,6 +2,7 @@ package usermgmt.servlet;
 
 
 import jpa.service.DBUser;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,7 +41,10 @@ public class SignInServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
+        User user = null;
+
         if ((signInDBUser.validate(email, password)) && (email != null && password != null)){
+            req.getSession().setAttribute("authenticatedUser", user);
             String value = req.getParameter("rememberMe");
             boolean remeberMe = false;
             if (value != null && value.equalsIgnoreCase("on")){

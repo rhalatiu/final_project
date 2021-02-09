@@ -48,13 +48,15 @@ public class OrderSent extends HttpServlet {
 
             for (Cookie ck : cookies) {
                 if (ck.getName().equals("cart")) {
-                    ck.setMaxAge(0);
-                    resp.addCookie(ck);
+                    Cookie cookie = new Cookie("cart", null);
+                    cookie.setMaxAge(0);
+                    resp.addCookie(cookie);
                 }
 
                 if (ck.getName().equals("cartNo")) {
-                    ck.setMaxAge(0);
-                    resp.addCookie(ck);
+                    Cookie cookie = new Cookie("cartNo", null);
+                    cookie.setMaxAge(0);
+                    resp.addCookie(cookie);
                 }
             }
         }

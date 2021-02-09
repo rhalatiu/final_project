@@ -19,8 +19,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a103af3209.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="css/products.css">
+    <script> function addToCart(id){
+        var request = new XMLHttpRequest();
+        var url = '<c:out value="${pageContext.request.contextPath}"/>/adauga?produs=' + id ;
+        try {
+            console.log("value= " + id)
+            request.open("POST", url);
+            request.send();
+        } catch (e) {
+            alert("Unable to connect to server");
+        }
+    }
+    </script>
 </head>
 <body>
+<%Cookie[] cookies=request.getCookies();
+    String product="";
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("product")) {
+                product=cookie.getValue();
+            }
+        }
+    }
+%>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <a class="navbar-brand" href="${pageContext.request.contextPath}"/>
     <img src="images/logo.jpg" height="50" alt="Brand">
@@ -69,136 +91,161 @@
     </div>
 </nav>
 <div>
-<div class="card-deck text-center ml-5 mr-2">
-    <div class="card">
-        <img class="card-img-top" src="images/mure.jpg" alt="Mure">
-        <div class="card-body">
-            <h5 class="card-title">Mure</h5>
-            <p class="card-text">20 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
+<%--    <form name="addToCart" method="post">--%>
+<div class="card-columns text-center ml-5 mr-4">
+    <c:forEach items="${allProducts}" var="product">
+        <div class="card">
+            <c:choose>
+            <c:when test="${product.productImage == null}">
+                <img class="card-img-top" src="images/default.jpg" alt="Default">
+            </c:when>
+            <c:otherwise>
+                <img class="card-img-top" src="images/<c:out value="${product.productImage}" />" alt="<c:out value="${product.productName}" />">
+            </c:otherwise>
+        </c:choose>
+            <div class="card-body" id="<c:out value="${product.productName}" />">
+                <h5 class="card-title"><c:out value="${product.productName}" /></h5>
+                <p class="card-text"><c:out value="${product.productPrice}" /> RON/kg</p>
+                <button onclick="addToCart(this.parentNode.id)" class="btn btn-primary">Adauga in cos</button>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/zmeura.jpg" alt="Zmeura">
-        <div class="card-body">
-            <h5 class="card-title">Zmeura</h5>
-            <p class="card-text">25 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/capsuni.jpg" alt="Capsuni">
-        <div class="card-body">
-            <h5 class="card-title">Capsuni</h5>
-            <p class="card-text">10 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
+<%--        <c:if test="${rowCounter.count % 5 == 0||rowCounter.count == fn:length(values)}">--%>
+<%--        </tr>--%>
+<%--        </c:if>--%>
+    </c:forEach>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/mure.jpg" alt="Mure">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Mure</h5>--%>
+<%--            <p class="card-text">20 RON/kg</p>--%>
+<%--            <button class="btn btn-primary" name="mure" value="product" type="submit">Adauga in cos</button>--%>
+<%--&lt;%&ndash;            <a class="btn btn-primary" name="mure" type="submit">Adauga in cos</a>&ndash;%&gt;--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/zmeura.jpg" alt="Zmeura">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Zmeura</h5>--%>
+<%--            <p class="card-text">25 RON/kg</p>--%>
+<%--            <button class="btn btn-primary" name="zmeura" value="product" type="submit">Adauga in cos</button>--%>
+<%--&lt;%&ndash;            <a class="btn btn-primary" name="zmeura" type="submit">Adauga in cos</a>&ndash;%&gt;--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/capsuni.jpg" alt="Capsuni">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Capsuni</h5>--%>
+<%--            <p class="card-text">10 RON/kg</p>--%>
+<%--            <button class="btn btn-primary" name="capsuni" value="product" type="submit">Adauga in cos</button>--%>
+<%--&lt;%&ndash;            <a class="btn btn-primary" name="capsuni" type="submit">Adauga in cos</a>&ndash;%&gt;--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="card-deck text-center mt-4 ml-5 mr-2">--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/afine.jpg" alt="Afine">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Afine</h5>--%>
+<%--            <p class="card-text">20 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/agrise.jpg" alt="Agrise">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Agrise</h5>--%>
+<%--            <p class="card-text">15 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/caise.jpg" alt="Caise">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Caise</h5>--%>
+<%--            <p class="card-text">7 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="card-deck text-center mt-4 ml-5 mr-2">--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/cirese.jpg" alt="Cirese">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Cirese</h5>--%>
+<%--            <p class="card-text">35 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/coacaze.jpg" alt="Coacaze">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Coacaze</h5>--%>
+<%--            <p class="card-text">12 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/visine.jpg" alt="Visine">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Visine</h5>--%>
+<%--            <p class="card-text">10 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="card-deck text-center mt-4 ml-5 mr-2">--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/mereverzi.jpg" alt="Mere Verzi">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Mere Verzi</h5>--%>
+<%--            <p class="card-text">5 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/meregolden.jpg" alt="Mere Golden">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Mere Golden</h5>--%>
+<%--            <p class="card-text">5.5 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/mererosii.jpg" alt="Mere Rosii">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Mere Rosii</h5>--%>
+<%--            <p class="card-text">6 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="card-deck text-center mt-4 ml-5 mr-2 mb-4">--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/pere.jpg" alt="Pere">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Pere</h5>--%>
+<%--            <p class="card-text">7.5 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/prune.jpg" alt="Prune">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Prune</h5>--%>
+<%--            <p class="card-text">8 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="card">--%>
+<%--        <img class="card-img-top" src="images/struguri.jpg" alt="Struguri">--%>
+<%--        <div class="card-body">--%>
+<%--            <h5 class="card-title">Struguri</h5>--%>
+<%--            <p class="card-text">11 RON/kg</p>--%>
+<%--            <a href="#" class="btn btn-primary">Adauga in cos</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 </div>
-<div class="card-deck text-center mt-4 ml-5 mr-2">
-    <div class="card">
-        <img class="card-img-top" src="images/afine.jpg" alt="Afine">
-        <div class="card-body">
-            <h5 class="card-title">Afine</h5>
-            <p class="card-text">20 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/agrise.jpg" alt="Agrise">
-        <div class="card-body">
-            <h5 class="card-title">Agrise</h5>
-            <p class="card-text">15 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/caise.jpg" alt="Caise">
-        <div class="card-body">
-            <h5 class="card-title">Caise</h5>
-            <p class="card-text">7 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-</div>
-<div class="card-deck text-center mt-4 ml-5 mr-2">
-    <div class="card">
-        <img class="card-img-top" src="images/cirese.jpg" alt="Cirese">
-        <div class="card-body">
-            <h5 class="card-title">Cirese</h5>
-            <p class="card-text">35 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/coacaze.jpg" alt="Coacaze">
-        <div class="card-body">
-            <h5 class="card-title">Coacaze</h5>
-            <p class="card-text">12 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/visine.jpg" alt="Visine">
-        <div class="card-body">
-            <h5 class="card-title">Visine</h5>
-            <p class="card-text">10 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-</div>
-<div class="card-deck text-center mt-4 ml-5 mr-2">
-    <div class="card">
-        <img class="card-img-top" src="images/mereverzi.jpg" alt="Mere Verzi">
-        <div class="card-body">
-            <h5 class="card-title">Mere Verzi</h5>
-            <p class="card-text">5 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/meregolden.jpg" alt="Mere Golden">
-        <div class="card-body">
-            <h5 class="card-title">Mere Golden</h5>
-            <p class="card-text">5.5 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/mererosii.jpg" alt="Mere Rosii">
-        <div class="card-body">
-            <h5 class="card-title">Mere Rosii</h5>
-            <p class="card-text">6 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-</div>
-<div class="card-deck text-center mt-4 ml-5 mr-2 mb-4">
-    <div class="card">
-        <img class="card-img-top" src="images/pere.jpg" alt="Pere">
-        <div class="card-body">
-            <h5 class="card-title">Pere</h5>
-            <p class="card-text">7.5 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/prune.jpg" alt="Prune">
-        <div class="card-body">
-            <h5 class="card-title">Prune</h5>
-            <p class="card-text">8 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="images/struguri.jpg" alt="Struguri">
-        <div class="card-body">
-            <h5 class="card-title">Struguri</h5>
-            <p class="card-text">11 RON/kg</p>
-            <a href="#" class="btn btn-primary">Adauga in cos</a>
-        </div>
-    </div>
-</div>
+<%--    </form>--%>
 </div>
 </body>
 </html>

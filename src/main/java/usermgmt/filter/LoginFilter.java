@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/profile"})
-public class LoginFilter extends HttpFilter {
+public class LoginFilter extends HttpFilter{
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         Object aUsr = req.getSession().getAttribute("authenticatedUser");

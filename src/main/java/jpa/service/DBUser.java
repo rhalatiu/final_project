@@ -72,7 +72,7 @@ public class DBUser implements UserInterface {
     }
 
     @Override
-    public boolean validate(String email, String password) {
+    public User validate(String email, String password) {
         entityManager.getTransaction().begin();
         EntityTransaction et = entityManager.getTransaction();
         String query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password";
@@ -84,12 +84,12 @@ public class DBUser implements UserInterface {
             user = tq.getSingleResult();
             System.out.println(user.getEmail());
             et.commit();
-            return true;
+            return user;
         }
         catch (NoResultException ex){
             ex.printStackTrace();
             et.rollback();
-            return false;
+            return null;
         }
     }
 }

@@ -70,7 +70,7 @@
                             <input type="password" class="form-control" name="password" id="exampleDropdownFormPassword1" placeholder="Password">
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <input type="checkbox" name="rememberMe" class="form-check-input" id="dropdownCheck">
                             <label class="form-check-label" for="dropdownCheck">
                                 Remember me
                             </label>
@@ -79,6 +79,8 @@
                     </form>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/signup">New around here? Sign up</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/profil">Profile Page</a>
                 </div>
             </li>
             <li class="nav-item">

@@ -2,15 +2,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: halat
-  Date: 11-Dec-20
-  Time: 8:35 PM
+  Date: 09-Dec-20
+  Time: 2:24 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>SignIn</title>
+    <title>Cart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -18,22 +18,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a103af3209.js" crossorigin="anonymous"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/signin.css">
-</head>
-<body>
-<%Cookie[] cookies=request.getCookies();
-    String name="";
-    if (cookies != null) {
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("cookieUserSignin")) {
-                name=cookie.getValue();
-            }
+    <link rel="stylesheet" type="text/css" href="css/cart.css">
+    <script> function sendOrder(){
+        var request = new XMLHttpRequest();
+        var url = '<c:out value="${pageContext.request.contextPath}"/>/orderSent' ;
+        try {
+            request.open("POST", url);
+            request.send();
+        } catch (e) {
+            alert("Unable to connect to server");
         }
     }
-%>
+    </script>
+</head>
+<body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <a class="navbar-brand" href="${pageContext.request.contextPath}"/>
     <img src="images/logo.jpg" height="50" alt="Brand">
@@ -81,26 +79,43 @@
         </ul>
     </div>
 </nav>
+<div>
+    <div class="card-columns text-center ml-5 mr-4">
+        <c:forEach items="${selectedProducts}" var="product">
+            <div class="card">
+                <div class="card-body" id="<c:out value="${product}" />">
 
-<div class="container">
-    <div class="row mgTp">
-        <form class="col-md-6 offset-md-3" method="post" action="signin">
-            <h3 class="title">Please sign in</h3>
-            <hr class="divisor">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@example.com">
+                <h5 class="card-title"><c:out value="${product}" /></h5>
+<%--                <p class="card-text"><c:out value="${product.productPrice}" /> RON/kg</p>--%>
+<%--                <button onclick="addToCart(this.parentNode.id)" class="btn btn-primary">Adauga in cos</button>--%>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+        </c:forEach>
+
+        <c:forEach items="${selectedProductNo}" var="product">
+            <div class="card">
+                <div class="card-body" id="<c:out value="${product}" />">
+
+                    <h5 class="card-title"><c:out value="${product}" /></h5>
+                <%--                <p class="card-text"><c:out value="${product.productPrice}" /> RON/kg</p>--%>
+                <%--                <button onclick="addToCart(this.parentNode.id)" class="btn btn-primary">Adauga in cos</button>--%>
+                </div>
             </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="rememberMe">
-                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        </c:forEach>
+
+        <c:forEach items="${selectedPrices}" var="product">
+            <div class="card">
+                <div class="card-body" id="<c:out value="${product}" />">
+
+                    <h5 class="card-title"><c:out value="${product}" /></h5>
+                        <%--                <p class="card-text"><c:out value="${product.productPrice}" /> RON/kg</p>--%>
+                        <%--                <button onclick="addToCart(this.parentNode.id)" class="btn btn-primary">Adauga in cos</button>--%>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary topBtn"><i class="fa fa-sign-in"></i> Sign in</button>
-        </form>
+        </c:forEach>
+    </div>
+    <div class = "col text-center">
+        <button onclick="sendOrder()" class="btn btn-primary">Trimite comanda</button>
     </div>
 </div>
 </body>

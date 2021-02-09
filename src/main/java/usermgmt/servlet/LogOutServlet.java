@@ -31,8 +31,9 @@ public class LogOutServlet extends HttpServlet {
             httpSession.invalidate();
             req.setAttribute("msg", "You have successfully logged out.");
             System.out.println("log out complete");
-            logger.warn("log out complete");
+            //logger.warn("log out complete");
             resp.sendRedirect(req.getContextPath());
+
         }
     }
 }

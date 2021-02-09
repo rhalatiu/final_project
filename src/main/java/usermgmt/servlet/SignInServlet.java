@@ -43,7 +43,7 @@ public class SignInServlet extends HttpServlet {
 
         User user = null;
 
-        if ((signInDBUser.validate(email, password)) && (email != null && password != null)){
+        if (((user = signInDBUser.validate(email, password)) != null) && (email != null && password != null)){
             req.getSession().setAttribute("authenticatedUser", user);
             String value = req.getParameter("rememberMe");
             boolean remeberMe = false;
@@ -52,21 +52,13 @@ public class SignInServlet extends HttpServlet {
             }
             if (remeberMe){
                 Cookie cookieEmail = new Cookie("cookieUserSignin", email);
-                Cookie cookiePassword = new Cookie("cookieSigninPassword", password);
                 cookieEmail.setMaxAge(60 * 60 * 24 * 365);
-                cookiePassword.setMaxAge(60 * 60 * 24 * 365);
                 resp.addCookie(cookieEmail);
-                resp.addCookie(cookiePassword);
                 System.out.println(cookieEmail);
-                System.out.println(cookiePassword);
                 System.out.println("trecut de cookie");
             }
             RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
             dispatcher.forward(req, resp);
-//            Cookie ck = new Cookie("email", email);
-//            resp.addCookie(ck);
-            //trebuie sa creez un fisier cookie si sa il trimit si sa fac redirect la prima /principala
-
         }else{
             req.setAttribute("errorMsg", "Invalid credentials!");
             throw new Exception("Login not successful");

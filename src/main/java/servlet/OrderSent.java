@@ -15,6 +15,11 @@ public class OrderSent extends HttpServlet {
     DBProducts dbProducts = new DBProducts();
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/ordersent.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
         String[] cartProduct = null;

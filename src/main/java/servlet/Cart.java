@@ -40,7 +40,7 @@ public class Cart extends HttpServlet {
 
                     List<String> temporary = new LinkedList<String>(Arrays.asList(cartProduct));
                     temporary.add(0, "Numele Produsului");
-                    temporary.add("");
+                    temporary.add("Numele Produsului");
                     cartProduct = temporary.toArray(new String[temporary.size()]);
 
                     req.setAttribute("selectedProducts", cartProduct);

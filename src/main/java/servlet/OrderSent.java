@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/orderSent"})
+@WebServlet(urlPatterns = {"/ordersent"})
 public class OrderSent extends HttpServlet {
     DBProducts dbProducts = new DBProducts();
 

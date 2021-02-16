@@ -1,57 +1,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: halat
+  Date: 16-Feb-21
+  Time: 11:55 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a103af3209.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/products.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:700' rel='stylesheet' type='text/css'>
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-        }
-
-        .bg {
-            /* The image used */
-            background-image: url("images/homepage.jpg");
-
-            /* Full height */
-            height: 100%;
-
-            /* Center and scale the image nicely */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .text-block {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background-color: black;
-            color: white;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
+        @import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
+        @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
     </style>
-
+    <link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
+    <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/jquery-1.9.1.min.js"></script>
+    <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/html5shiv.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <a class="navbar-brand" href="${pageContext.request.contextPath}"/>
-        <img src="images/logo.jpg" height="50" alt="Brand">
+    <img src="images/logo.jpg" height="50" alt="Brand">
     </a>
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -98,14 +78,12 @@
         </ul>
     </div>
 </nav>
-<div class="bg">
-    <div class="centered">
-        <span class="border">
-            <h1>Bine ati venit!</h1>
-        </span>
-    </div>
+<header class="site-header" id="header">
+    <h1 class="site-header__title" data-lead-id="site-header-title">MULTUMIM!</h1>
+</header>
+<div class="main-content">
+    <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
+    <p class="main-content__body" data-lead-id="main-content-body">Va multumim pentru comanda plasata si pentru faptul ca sustineti producatorii locali. Comanda va ajunge la dumneavoastra in cel mai scurt timp cu fructele noastre proaspete si gustoase. Va mai asteptam pe la voi!</p>
 </div>
-
-
 </body>
 </html>

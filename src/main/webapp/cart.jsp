@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="css/cart.css">
     <script> function sendOrder(){
         var request = new XMLHttpRequest();
-        var url = '<c:out value="${pageContext.request.contextPath}"/>/orderSent' ;
+        var url = '<c:out value="${pageContext.request.contextPath}"/>/ordersent' ;
         try {
             request.open("POST", url);
             request.send();
@@ -62,7 +62,7 @@
                             <input type="password" class="form-control" name="password" id="exampleDropdownFormPassword1" placeholder="Password">
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <input type="checkbox" name="rememberMe" class="form-check-input" id="dropdownCheck">
                             <label class="form-check-label" for="dropdownCheck">
                                 Remember me
                             </label>
@@ -71,6 +71,8 @@
                     </form>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/signup">New around here? Sign up</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/profil">Profile Page</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -115,7 +117,9 @@
         </c:forEach>
     </div>
     <div class = "col text-center">
-        <button onclick="sendOrder()" class="btn btn-primary">Trimite comanda</button>
+<%--        <button type="button" onclick="sendOrder()" href="<c:out value="${pageContext.request.contextPath}"/>/ordersent" class="btn btn-primary">Trimite comanda</button>--%>
+<%--        <a onclick="sendOrder()"></a>--%>
+        <a type="button" onclick="sendOrder()" href="<c:out value="${pageContext.request.contextPath}"/>/ordersent" class="btn btn-primary">Trimite comanda</a>
     </div>
 </div>
 </body>

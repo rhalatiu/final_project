@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -34,7 +33,9 @@ public class Cart extends HttpServlet {
             List<Integer> prices = new ArrayList<Integer>();
 
             for (Cookie cookie : cookies){
-                if (cookie.getName().equals("cart")){
+                if (Arrays.stream(cookies).noneMatch(x -> x.getName().equals("cart"))){
+                    req.getRequestDispatcher("/emptycart.jsp").forward(req, resp);
+                } else if (cookie.getName().equals("cart")){
                     String cart = cookie.getValue();
                     String[] cartProduct = cart.split("/");
 
@@ -87,27 +88,11 @@ public class Cart extends HttpServlet {
                 }
             }
         }
-        //req.setAttribute("selectedProducts", dbProducts.findSelectedProducts());
         req.getRequestDispatcher("/cart.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        PrintWriter writer = resp.getWriter();
 
-        Cookie[] cookies = req.getCookies();
-        if (cookies != null) {
-            //for (int i = 0; i < cookies.length; i++) {
-             //   writer.println("Name: " + cookies[i].getName() + "; Value: " + cookies[i].getValue());
-                //req.getCookies(); asta ii pentru add to cart
-           // }
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("cart")){
-                    writer.write("Name="+cookie.getName()+", Value="+cookie.getValue());
-
-                }
-            }
-        }
     }
 }

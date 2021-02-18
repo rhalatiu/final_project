@@ -1,9 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: halat
+  Date: 11-Jan-21
+  Time: 9:04 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Home</title>
+    <title>Cos gol</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,41 +18,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a103af3209.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="css/home.css">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-        }
-
-        .bg {
-            /* The image used */
-            background-image: url("images/homepage.jpg");
-
-            /* Full height */
-            height: 100%;
-
-            /* Center and scale the image nicely */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .arrange {
-            background-color: white;
-        }
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="css/emptycart.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <a class="navbar-brand" href="${pageContext.request.contextPath}"/>
-        <img src="images/logo.jpg" height="50" alt="Brand">
+    <img src="images/logo.jpg" height="50" alt="Brand">
     </a>
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -92,12 +70,22 @@
         </ul>
     </div>
 </nav>
-<div class="bg">
-    <div class="centered">
-            <h1 class="arrange">Bine ati venit!</h1>
+<div class="container-fluid mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+<%--                <div class="card-header">--%>
+<%--                    <h5>Cart</h5>--%>
+<%--                </div>--%>
+                <div class="card-body cart">
+                    <div class="col-sm-12 empty-cart-cls text-center"> <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                        <h3><strong>Cosul dumneavoastra este gol</strong></h3>
+                        <a href="<c:out value="${pageContext.request.contextPath}"/>/produse" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Intoarce-te la produse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-
 </body>
 </html>

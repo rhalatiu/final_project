@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
-@WebFilter(urlPatterns = {"/profil"})
-public class LoginFilter extends HttpFilter{
+@WebFilter(urlPatterns = {"/cos"})
+public class CartFilter extends HttpFilter {
     @Override
     public void init() throws ServletException {
         super.init();

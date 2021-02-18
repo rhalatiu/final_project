@@ -14,9 +14,6 @@ public class Products extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        int addedToCart = 0;
-
-        Cookie c = null;
     }
 
     @Override

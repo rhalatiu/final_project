@@ -10,4 +10,5 @@ public interface UserInterface {
     User validate(String email, String password);
     void updateUser(String email);
     void deleteUser(String email);
+    String getUsersFirstName(String email);
 }

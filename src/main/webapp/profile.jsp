@@ -17,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a103af3209.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="css/profile.css">
 </head>
 <body>
@@ -50,7 +51,7 @@
                             <input type="password" class="form-control" name="password" id="exampleDropdownFormPassword1" placeholder="Password">
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <input type="checkbox" name="rememberMe" class="form-check-input" id="dropdownCheck">
                             <label class="form-check-label" for="dropdownCheck">
                                 Remember me
                             </label>
@@ -59,6 +60,8 @@
                     </form>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/signup">New around here? Sign up</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/profil">Profile Page</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -68,11 +71,16 @@
     </div>
 </nav>
 <div style="text-align: center">
-    <h1>Welcome to Bookshop Website Admin Panel</h1>
-    <b>${user.email} (${user.email})</b>
+    <h1>Profilul tau</h1><br><br>
+    <h3><b>Bine ai venit, ${firstNameProfile}</b></h3><br><br>
+    <p>Apasa butonul de mai jos pentru a te putea deconecta!</p>
     <br><br>
     <form action="logout">
-    <a href="logout">Logout</a>
+        <div>
+<%--            <button type="button" class="btn btn-danger">Deconectare</button>--%>
+            <a class="btn btn-danger" type="button" href="logout">Deconectare</a>
+        </div>
+
     </form>
 </div>
 

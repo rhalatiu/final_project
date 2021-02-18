@@ -71,9 +71,11 @@
         </div>
     </nav>
     <div class="introText">
-            <p>Situat pe drumul E578/DN 15A, la o distanta de 6 km de centrul Municipiului Reghin, SC FructeReghin SRL comercializeaza o gama larga de produse, articolele fiind variate, de o calitate superioara, in conformitate cu standardele de calitate in domeniu, impuse de legislatia specifica.</p><br />
-            <b>Ce ne reprezinta?</b>
-            <p>Insa, ceea ce ne reprezinta si ne recomanda este promovarea produselor romanesti, pe parcursul intregului an calendaristic, societatea noastra fiind unul din promotorii acestora si, implicit un deziderat de la care nu a abdicat.</p><br />
+        <b>Despre noi</b>
+        <p>Infiintata in anul 2015, ferma de arbusti fructiferi - mure, soiul Thornfree si zmeura soiurile Tulamen si Glen Ample.</p><br />
+        <b>Ce ne reprezinta?</b>
+        <p>Oferim clientilor fructe proaspete, de cea mai buna calitate, produse in sistem bio (fertilizate cu ingrasamant organic si tratate cu substante organice). De asemenea, oferim clientilor material saditor - butasi de mure si drajoni de zmeura, calificati din puncte de vedere fitosanitar, de autenticitate si calitate a materialului de inmultire. </p><br />
+        <p>Va asteptam!</p><br />
         </div>
     <div>
                     <div class="contacts"><i class="fas fa-map-marker"> Strada Dealul Brezii</i></div><br />

@@ -10,7 +10,7 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Cart</title>
+    <title>Cos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -29,6 +29,53 @@
             alert("Unable to connect to server");
         }
     }
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+    $(".dropdown-menu").result(function (event) {
+        var withSignIn = () => {
+            return (`<form class="px-4 py-3" method="post" action="signin">
+                <div class="form-group">
+                    <label for="exampleDropdownFormEmail1">Email address</label>
+                    <input type="email" class="form-control" name="email" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="exampleDropdownFormPassword1">Password</label>
+                    <input type="password" class="form-control" name="password" id="exampleDropdownFormPassword1" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="rememberMe" class="form-check-input" id="dropdownCheck">
+                        <label class="form-check-label" for="dropdownCheck">
+                            Remember me
+                        </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/signup">New around here? Sign up</a>`);
+        }
+        var withoutSignIn = () => {
+            return(``);
+        }
+
+        if (getCookie("cookieUserSignin") === "cookieUserSignin") {
+            return withoutSignIn;
+        } else {
+            return withSignIn;
+            }
+    })
     </script>
 </head>
 <body>
@@ -52,25 +99,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"><i class="far fa-user-circle"></i> Profil</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <form class="px-4 py-3" method="post" action="signin">
-                        <div class="form-group">
-                            <label for="exampleDropdownFormEmail1">Email address</label>
-                            <input type="email" class="form-control" name="email" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleDropdownFormPassword1">Password</label>
-                            <input type="password" class="form-control" name="password" id="exampleDropdownFormPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" name="rememberMe" class="form-check-input" id="dropdownCheck">
-                            <label class="form-check-label" for="dropdownCheck">
-                                Remember me
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </form>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/signup">New around here? Sign up</a>
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/profil">Profile Page</a>
                 </div>
@@ -88,8 +117,6 @@
                 <div class="card-body" id="<c:out value="${product}" />">
 
                 <h5 class="card-title"><c:out value="${product}" /></h5>
-<%--                <p class="card-text"><c:out value="${product.productPrice}" /> RON/kg</p>--%>
-<%--                <button onclick="addToCart(this.parentNode.id)" class="btn btn-primary">Adauga in cos</button>--%>
                 </div>
             </div>
         </c:forEach>
@@ -99,8 +126,6 @@
                 <div class="card-body" id="<c:out value="${product}" />">
 
                     <h5 class="card-title"><c:out value="${product}" /></h5>
-                <%--                <p class="card-text"><c:out value="${product.productPrice}" /> RON/kg</p>--%>
-                <%--                <button onclick="addToCart(this.parentNode.id)" class="btn btn-primary">Adauga in cos</button>--%>
                 </div>
             </div>
         </c:forEach>
@@ -110,15 +135,11 @@
                 <div class="card-body" id="<c:out value="${product}" />">
 
                     <h5 class="card-title"><c:out value="${product}" /></h5>
-                        <%--                <p class="card-text"><c:out value="${product.productPrice}" /> RON/kg</p>--%>
-                        <%--                <button onclick="addToCart(this.parentNode.id)" class="btn btn-primary">Adauga in cos</button>--%>
                 </div>
             </div>
         </c:forEach>
     </div>
     <div class = "col text-center">
-<%--        <button type="button" onclick="sendOrder()" href="<c:out value="${pageContext.request.contextPath}"/>/ordersent" class="btn btn-primary">Trimite comanda</button>--%>
-<%--        <a onclick="sendOrder()"></a>--%>
         <a type="button" onclick="sendOrder()" href="<c:out value="${pageContext.request.contextPath}"/>/ordersent" class="btn btn-primary">Trimite comanda</a>
     </div>
 </div>

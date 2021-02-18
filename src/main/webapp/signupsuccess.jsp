@@ -79,14 +79,10 @@
 <div style="text-align: center">
     <br><br>
     <div>
-<%--    <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>--%>
         <a type="button" class="btn btn-primary btn-lg btn-block" href="<c:out value="${pageContext.request.contextPath}"/>">Acasa</a>
     </div>
     <br><br>
     <a type="button" class="btn btn-secondary btn-lg btn-block" href="<c:out value="${pageContext.request.contextPath}"/>/signin">SignIn</a>
-<%--    <form action="logout" method="get">--%>
-<%--        <a href="logout">Logout</a>--%>
-<%--    </form>--%>
 </div>
 </body>
 </html>

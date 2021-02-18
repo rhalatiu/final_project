@@ -34,37 +34,10 @@ public class AddToCart extends HttpServlet {
             Cookie cookieNo = new Cookie(CARTNO, "1");
             resp.addCookie(cookieNo);
         }
-//        cookies = req.getCookies();
-        //System.out.println(produs);
-        for (Cookie ck : cookies){
 
-          //  if (CART.equals(ck.getName())){
-//                String value = ck.getValue();
-//                System.out.println(value);
-//                Map<String, String> map = Arrays.stream(value.substring(1, value.length() - 1).split(","))
-//                        .map(s -> s.split("="))
-//                        .collect(Collectors.toMap(a -> a[0], a -> a.length>1? a[1]: ""));
-//                String cantitateString = map.get(produs);
-//                if (cantitateString == null){
-//                    map.put(produs, String.valueOf(1));
-//                } else {
-//                    Integer cantitate = Integer.parseInt(map.get(produs));
-//                    map.put(produs, String.valueOf(cantitate + 1));
-//                }
-//
-//                newCookieValue = map.toString().replaceAll(", ", "/");
-//                System.out.println(newCookieValue);
-//                break;
+        for (Cookie ck : cookies){
                 if(ck.getName().equals(CART)){
                     index = 0;
-//                    if(ck.getValue().isEmpty()){
-//                        Cookie cookie = new Cookie(CART, "{" + produs + "}");
-//                        resp.addCookie(cookie);
-//                        Cookie cookieNo = new Cookie(CARTNO, "{1}");
-//                        resp.addCookie(cookieNo);
-//                        flag = 0;
-//                        ck.setValue("{" + produs + "}");
-//                    } else {
                         if(ck.getValue().contains(produs)){
                             flag = 1;
                             if (ck.getValue().contains("/")){
@@ -85,9 +58,6 @@ public class AddToCart extends HttpServlet {
                   //  }
                 }
                 if(ck.getName().equals(CARTNO)){
-//                    if(flag == 0){
-//                        ck.setValue("{1}");
-//                    } else
                     if (flag == 1) {
 
                         List<String> cookieValueList = Arrays.asList(ck.getValue().split("/", -1));
@@ -109,8 +79,6 @@ public class AddToCart extends HttpServlet {
                         resp.addCookie(ck);
                     }
                 }
-            //}
         }
-
     }
 }

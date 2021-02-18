@@ -92,4 +92,8 @@ public class DBUser implements UserInterface {
             return null;
         }
     }
+
+    public String getUsersFirstName(String email){
+       return entityManager.createQuery("SELECT a.firstName FROM User a WHERE a.email = :email", String.class).setParameter("email", email).getSingleResult();
+    }
 }

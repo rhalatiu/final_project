@@ -44,7 +44,7 @@
         }
         return "";
     }
-    $(".dropdown-menu").result(function (event) {
+    $(".dropdown-menu dropdown-menu-right").result(function (event) {
         var withSignIn = () => {
             return (`<form class="px-4 py-3" method="post" action="signin">
                 <div class="form-group">
@@ -64,7 +64,8 @@
                 <button type="submit" class="btn btn-primary">Sign in</button>
             </form>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/signup">New around here? Sign up</a>`);
+            <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/signup">New around here? Sign up</a>
+            <div class="dropdown-divider"></div>`);
         }
         var withoutSignIn = () => {
             return(``);
@@ -99,9 +100,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"><i class="far fa-user-circle"></i> Profil</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
+                    <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/profil">Profilul meu</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/profil">Profile Page</a>
+                    <a class="dropdown-item" href="<c:out value="${pageContext.request.contextPath}"/>/signup">Cont nou</a>
                 </div>
             </li>
             <li class="nav-item">
